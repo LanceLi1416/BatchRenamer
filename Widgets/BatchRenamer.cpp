@@ -294,8 +294,9 @@ void BatchRenamer::removeUnaffectedFiles() {
 }
 
 void BatchRenamer::updateFiles() {
+    *this->lstRenamed = *this->lstOrigNames; // reset renamed
     for (Pallet *pallet: this->mapPallets->values())
-        *this->lstRenamed = pallet->applyChanges(*this->lstOrigNames, *this->lstRenamed);
+        pallet->applyChanges(*this->lstRenamed, *this->lstRenamed);
 
     for (qsizetype i = 0; i < this->lstRenamed->length(); ++i)
         this->tabFiles->setItem(i, 1, new QTableWidgetItem((*this->lstRenamed)[i].fileName()));
