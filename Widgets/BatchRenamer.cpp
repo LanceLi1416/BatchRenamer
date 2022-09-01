@@ -290,7 +290,17 @@ void BatchRenamer::removeAllFiles() {
 }
 
 void BatchRenamer::removeUnaffectedFiles() {
-    // TODO: complete this function
+    auto *remove_indices = new QList<qsizetype>();
+
+    for (qsizetype i = 0; i < this->lstOrigNames->length(); ++i)
+        if ((*this->lstOrigNames)[i] == (*this->lstRenamed)[i])
+            remove_indices->append(i);
+
+    for (qsizetype i = remove_indices->length() - 1; i > -1; --i) {
+        this->tabFiles->removeRow((*remove_indices)[i]);
+        this->lstOrigNames->removeAt((*remove_indices)[i]);
+        this->lstRenamed->removeAt((*remove_indices)[i]);
+    }
 }
 
 void BatchRenamer::updateFiles() {
