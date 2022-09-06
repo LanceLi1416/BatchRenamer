@@ -9,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 if (WIN32)
     set(CMAKE_PREFIX_PATH "D:/Qt/6.2.4/msvc2019_64/lib/cmake")
 elseif (APPLE)
-    set(CMAKE_PREFIX_PATH "/Applications/Qt/6.2.4/lib/cmake")
+    set(CMAKE_PREFIX_PATH "/Applications/Qt/6.2.4/macos")
 endif ()
 
 find_package(Qt6 COMPONENTS
@@ -18,7 +18,34 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(BatchRenamer main.cpp Widgets/Pallet.hpp Widgets/AddOrRemove.cpp Widgets/AddOrRemove.h Widgets/Spacer.cpp Widgets/Spacer.h Widgets/brFindAndReplace.cpp Widgets/brFindAndReplace.h Widgets/brNumber.cpp Widgets/brNumber.h Widgets/brRemoveText.cpp Widgets/brRemoveText.h Widgets/brSetExtension.cpp Widgets/brSetExtension.h Widgets/BatchRenamer.cpp Widgets/BatchRenamer.h enums.h Widgets/brToolBar.cpp Widgets/brToolBar.h Core.h Core.cpp)
+add_executable(BatchRenamer
+        main.cpp
+        enums.h
+        Core.h
+        Core/find_and_replace.cpp
+        Core/find_and_replace.h
+        Core/number.cpp
+        Core/number.h
+        Core/set_extension.cpp
+        Core/set_extension.h
+        Widgets/AddOrRemove.cpp
+        Widgets/AddOrRemove.h
+        Widgets/BatchRenamer.cpp
+        Widgets/BatchRenamer.h
+        Widgets/brFindAndReplace.cpp
+        Widgets/brFindAndReplace.h
+        Widgets/brNumber.cpp
+        Widgets/brNumber.h
+        Widgets/brRemoveText.cpp
+        Widgets/brRemoveText.h
+        Widgets/brSetExtension.cpp
+        Widgets/brSetExtension.h
+        Widgets/brToolBar.cpp
+        Widgets/brToolBar.h
+        Widgets/Pallet.hpp
+        Widgets/Spacer.cpp
+        Widgets/Spacer.h)
+
 target_link_libraries(BatchRenamer PRIVATE
         Qt::Core
         Qt::Gui
