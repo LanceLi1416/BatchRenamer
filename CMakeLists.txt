@@ -44,7 +44,8 @@ add_executable(BatchRenamer
         Widgets/brToolBar.h
         Widgets/Pallet.hpp
         Widgets/Spacer.cpp
-        Widgets/Spacer.h)
+        Widgets/Spacer.h
+        resources.qrc)
 
 target_link_libraries(BatchRenamer PRIVATE
         Qt::Core
