@@ -156,9 +156,12 @@ void BatchRenamer::setupMenu() {
 
 void BatchRenamer::setupData() {
     this->mapPallets = new QMap<QListWidgetItem *, Pallet *>();
+
     this->lstOrigNames = new QList<QFileInfo>();
     this->lstRenamed = new QList<QFileInfo>();
     this->openedFiles = new QStringList();
+
+    this->dirLastOpened = new QDir(QDir::current());
 }
 
 void BatchRenamer::connectAll() {
@@ -305,7 +308,7 @@ void BatchRenamer::removeUnaffectedFiles() {
 
 void BatchRenamer::updateFiles() {
     *this->lstRenamed = *this->lstOrigNames; // reset renamed
-    for (Pallet *pallet: this->mapPallets->values())
+    for (Pallet *pallet: *qAsConst(this->mapPallets))
         pallet->applyChanges(*this->lstRenamed, *this->lstRenamed);
 
     for (qsizetype i = 0; i < this->lstRenamed->length(); ++i)

@@ -2,6 +2,7 @@
 #define BATCHRENAMER_BATCHRENAMER_H
 
 #include <QCoreApplication>
+#include <QDir>
 #include <QFileInfo>
 #include <QListWidget>
 #include <QMainWindow>
@@ -61,7 +62,9 @@ private:
     QMap<QListWidgetItem *, Pallet *> *mapPallets{};
     QList<QFileInfo> *lstOrigNames{};
     QList<QFileInfo> *lstRenamed{};
-    QStringList *openedFiles;
+    QStringList *openedFiles{};
+
+    QDir *dirLastOpened{};
 };
 
 
