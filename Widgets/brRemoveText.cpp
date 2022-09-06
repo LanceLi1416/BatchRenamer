@@ -7,19 +7,17 @@
 #include "../Core.h"
 
 brRemoveText::brRemoveText(QWidget *parent) : Pallet(parent) {
-    static QString (*_translate)(const char *, const char *, const char *, int) = QCoreApplication::translate;
-
     this->cboMode = new QComboBox(this);
-    this->cboMode->addItem(_translate("RemoveText", "Find & Replace", nullptr, -1));
-    this->cboMode->addItem(_translate("RemoveText", "Number", nullptr, -1));
-    this->cboMode->addItem(_translate("RemoveText", "Set Extension", nullptr, -1));
-    this->cboMode->addItem(_translate("RemoveText", "Remove Text", nullptr, -1));
+    this->cboMode->addItem(tr("Find & Replace"));
+    this->cboMode->addItem(tr("Number"));
+    this->cboMode->addItem(tr("Set Extension"));
+    this->cboMode->addItem(tr("Remove Text"));
     this->cboMode->setCurrentIndex(3);
 
-    auto *lblRem = new QLabel(_translate("RemoveText", "Remove:", nullptr, -1), this);
+    auto *lblRem = new QLabel(tr("Remove:"));
     this->lneRem = new QLineEdit(this);
 
-    this->chkFirst = new QCheckBox(_translate("RemoveText", "First Match Only", nullptr, -1), this);
+    this->chkFirst = new QCheckBox(tr("First Match Only"));
 
     auto *grid = new QGridLayout(this);
     grid->addWidget(this->cboMode, 0, 0, 1, 2);

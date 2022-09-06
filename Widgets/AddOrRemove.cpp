@@ -5,8 +5,6 @@
 #include <QLabel>
 
 AddOrRemove::AddOrRemove(const QString &addHint, const QString &remHint, QWidget *parent) : QWidget(parent) {
-    static QString (*_translate)(const char *, const char *, const char *, int) = QCoreApplication::translate;
-
     this->btnAdd = new QPushButton("+", this);
     auto *wgtHLine = new QLabel("|", this);
     this->btnRem = new QPushButton("-", this);

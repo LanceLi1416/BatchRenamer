@@ -7,29 +7,26 @@
 #include <QLabel>
 
 brFindAndReplace::brFindAndReplace(QWidget *parent) : Pallet(parent) {
-    auto *wgtMain = new QWidget();
-    static QString (*_translate)(const char *, const char *, const char *, int) = QCoreApplication::translate;
+    this->cboMode = new QComboBox(this);
+    this->cboMode->addItem(tr("Find & Replace"));
+    this->cboMode->addItem(tr("Number"));
+    this->cboMode->addItem(tr("Set Extension"));
+    this->cboMode->addItem(tr("Remove Text"));
 
-    this->cboMode = new QComboBox(wgtMain);
-    this->cboMode->addItem(_translate("FindAndReplace", "Find & Replace", nullptr, -1));
-    this->cboMode->addItem(_translate("FindAndReplace", "Number", nullptr, -1));
-    this->cboMode->addItem(_translate("FindAndReplace", "Set Extension", nullptr, -1));
-    this->cboMode->addItem(_translate("FindAndReplace", "Remove Text", nullptr, -1));
+    auto *lblApplyTo = new QLabel(tr("Apply To:"));
+    this->cboApplyTo = new QComboBox(this);
+    this->cboApplyTo->addItem(tr("Name Only"));
+    this->cboApplyTo->addItem(tr("Extension Only"));
+    this->cboApplyTo->addItem(tr("Name and Extension"));
 
-    auto *lblApplyTo = new QLabel(_translate("FindAndReplace", "Apply To:", nullptr, -1), wgtMain);
-    this->cboApplyTo = new QComboBox(wgtMain);
-    this->cboApplyTo->addItem(_translate("FindAndReplace", "Name Only", nullptr, -1));
-    this->cboApplyTo->addItem(_translate("FindAndReplace", "Extension Only", nullptr, -1));
-    this->cboApplyTo->addItem(_translate("FindAndReplace", "Name and Extension", nullptr, -1));
+    auto *lblFind = new QLabel(tr("Find:"));
+    this->lneFind = new QLineEdit(this);
 
-    auto *lblFind = new QLabel(_translate("FindAndReplace", "Find:", nullptr, -1), wgtMain);
-    this->lneFind = new QLineEdit(wgtMain);
+    auto *lblRepl = new QLabel(tr("Replace:"));
+    this->lneRepl = new QLineEdit(this);
 
-    auto *lblRepl = new QLabel(_translate("FindAndReplace", "Replace:", nullptr, -1), wgtMain);
-    this->lneRepl = new QLineEdit(wgtMain);
-
-    this->chkCase = new QCheckBox(_translate("FindAndReplace", "Case Sensitive", nullptr, -1), wgtMain);
-    this->chkFirst = new QCheckBox(_translate("FindAndReplace", "First Match Only", nullptr, -1), wgtMain);
+    this->chkCase = new QCheckBox(tr("Case Sensitive"));
+    this->chkFirst = new QCheckBox(tr("First Match Only"));
 
     auto *grid = new QGridLayout(this);
     grid->addWidget(this->cboMode, 0, 0, 1, 2);

@@ -7,16 +7,14 @@
 #include "../Core.h"
 
 brSetExtension::brSetExtension(QWidget *parent) : Pallet(parent) {
-    static QString (*_translate)(const char *, const char *, const char *, int) = QCoreApplication::translate;
-
     this->cboMode = new QComboBox(this);
-    this->cboMode->addItem(_translate("SetExtension", "Find & Replace", nullptr, -1));
-    this->cboMode->addItem(_translate("SetExtension", "Number", nullptr, -1));
-    this->cboMode->addItem(_translate("SetExtension", "Set Extension", nullptr, -1));
-    this->cboMode->addItem(_translate("SetExtension", "Remove Text", nullptr, -1));
+    this->cboMode->addItem(tr("Find & Replace"));
+    this->cboMode->addItem(tr("Number"));
+    this->cboMode->addItem(tr("Set Extension"));
+    this->cboMode->addItem(tr("Remove Text"));
     this->cboMode->setCurrentIndex(2);
 
-    auto *lblExt = new QLabel(_translate("SetExtension", "Extension:", nullptr, -1), this);
+    auto *lblExt = new QLabel(tr("Extension:"));
     this->lneExt = new QLineEdit(this);
 
     auto *grid = new QGridLayout(this);

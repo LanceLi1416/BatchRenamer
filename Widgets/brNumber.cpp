@@ -7,44 +7,42 @@
 #include "../Core.h"
 
 brNumber::brNumber(QWidget *parent) : Pallet(parent) {
-    static QString (*_translate)(const char *, const char *, const char *, int) = QCoreApplication::translate;
-
     this->cboMode = new QComboBox(this);
-    this->cboMode->addItem(_translate("Number", "Find & Replace", nullptr, -1));
-    this->cboMode->addItem(_translate("Number", "Number", nullptr, -1));
-    this->cboMode->addItem(_translate("Number", "Set Extension", nullptr, -1));
-    this->cboMode->addItem(_translate("Number", "Remove Text", nullptr, -1));
+    this->cboMode->addItem(tr("Find & Replace"));
+    this->cboMode->addItem(tr("Number"));
+    this->cboMode->addItem(tr("Set Extension"));
+    this->cboMode->addItem(tr("Remove Text"));
     this->cboMode->setCurrentIndex(1);
 
-    auto *lblApplyTo = new QLabel(_translate("Number", "Apply To:", nullptr, -1), this);
+    auto *lblApplyTo = new QLabel(tr("Apply To:"));
     this->cboApplyTo = new QComboBox(this);
-    this->cboApplyTo->addItem(_translate("Number", "Name Only", nullptr, -1));
-    this->cboApplyTo->addItem(_translate("Number", "Extension Only", nullptr, -1));
-    this->cboApplyTo->addItem(_translate("Number", "Name and Extension", nullptr, -1));
+    this->cboApplyTo->addItem(tr("Name Only"));
+    this->cboApplyTo->addItem(tr("Extension Only"));
+    this->cboApplyTo->addItem(tr("Name and Extension"));
 
-    auto *lblDigits = new QLabel(_translate("Number", "Digits:", nullptr, -1), this);
+    auto *lblDigits = new QLabel(tr("Digits:"));
     this->spnDigits = new QSpinBox(this);
     this->spnDigits->setValue(4);
 
-    auto *lblStart = new QLabel(_translate("Number", "Start value:", nullptr, -1), this);
+    auto *lblStart = new QLabel(tr("Start value:"));
     this->spnStart = new QSpinBox(this);
     this->spnStart->setValue(1);
 
-    auto *lblStep = new QLabel(_translate("Number", "Step value:", nullptr, -1), this);
+    auto *lblStep = new QLabel(tr("Step value:"));
     this->spnStep = new QSpinBox(this);
     this->spnStep->setValue(1);
 
-    auto *lblInsTxt = new QLabel(_translate("Number", "Insert text:", nullptr, -1), this);
+    auto *lblInsTxt = new QLabel(tr("Insert text:"));
     this->lneInsTxt = new QLineEdit(this);
 
-    auto *lblFormat = new QLabel(_translate("Number", "Format:", nullptr, -1), this);
+    auto *lblFormat = new QLabel(tr("Format:"));
     this->cboFormat = new QComboBox(this);
-    this->cboFormat->addItem(_translate("Number", "Original - text - number", nullptr, -1));
-    this->cboFormat->addItem(_translate("Number", "Number - text - original", nullptr, -1));
-    this->cboFormat->addItem(_translate("Number", "Text - number", nullptr, -1));
-    this->cboFormat->addItem(_translate("Number", "Number - text", nullptr, -1));
+    this->cboFormat->addItem(tr("Original - text - number"));
+    this->cboFormat->addItem(tr("Number - text - original"));
+    this->cboFormat->addItem(tr("Text - number"));
+    this->cboFormat->addItem(tr("Number - text"));
 
-    this->chkContinue = new QCheckBox(_translate("Number", "Continue Numbering", nullptr, -1), this);
+    this->chkContinue = new QCheckBox(tr("Continue Numbering"));
 
     auto *grid = new QGridLayout(this);
     grid->addWidget(this->cboMode, 0, 0, 1, 2);
