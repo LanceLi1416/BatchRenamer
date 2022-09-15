@@ -14,6 +14,7 @@
 #include "brNumber.h"
 #include "brRemoveText.h"
 #include "brSetExtension.h"
+#include "Spacer.h"
 
 BatchRenamer::BatchRenamer(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags) {
     this->setupUi();
@@ -36,31 +37,45 @@ void BatchRenamer::setupUi() {
 
     auto *wgtMain = new QWidget(this);
 
-    this->toolbar = new brToolBar();
-    this->addToolBar(this->toolbar);
+    this->btnRun = new QPushButton(tr("RUN"));
+    this->btnAddFiles = new QPushButton("+");
+    this->btnRemFiles = new QPushButton("-");
+    auto *spcRunL = new Spacer(this);
+    auto *spcRunR = new Spacer(this);
+    auto *hbxRun = new QHBoxLayout();
+    hbxRun->addWidget(spcRunL);
+    hbxRun->addWidget(btnRun);
+    hbxRun->addWidget(spcRunR);
+    hbxRun->addWidget(this->btnAddFiles);
+    hbxRun->addWidget(this->btnRemFiles);
 
     this->lstPallets = new QListWidget(wgtMain);
-    this->aomPallets = new AddOrRemove("Add a pallet", "Remove selected pallet(s)", this);
-    this->aomFiles = new AddOrRemove("Add files and folders", "Remove selected files and folders", this);
+    this->btnAddPallets = new QPushButton("+");
+    this->btnRemPallets = new QPushButton("-");
     this->tabFiles = new QTableWidget(0, 2, wgtMain);
     this->tabFiles->setHorizontalHeaderLabels({"Current Name", "New Name"});
+
+    this->btnAddPallets->setToolTip(tr("Add a pallet"));
+    this->btnRemPallets->setToolTip(tr("Remove selected pallet(s)"));
+    this->btnAddPallets->setToolTip(tr("Add file(s)")); // TODO: add folders after implementation
+    this->btnRemPallets->setToolTip(tr("Remove selected files"));
 
     this->lstPallets->setSelectionMode(QAbstractItemView::SelectionMode::ExtendedSelection);
     this->tabFiles->setSelectionMode(QAbstractItemView::SelectionMode::ExtendedSelection);
     // TODO: find a way to be able to select a specific text without editing, instead of the entire cell
     this->tabFiles->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    auto *vbxPallets = new QVBoxLayout();
-    vbxPallets->addWidget(this->lstPallets);
-    vbxPallets->addWidget(this->aomPallets);
-
-    auto *grdFiles = new QGridLayout();
-    grdFiles->addWidget(this->aomFiles, 0, 0, 1, 1);
-    grdFiles->addWidget(this->tabFiles, 1, 0, 1, 1);
+    auto *grdPallets = new QGridLayout();
+    auto *spcPallets = new Spacer(this);
+    grdPallets->addWidget(this->lstPallets, 0, 0, 1, 3);
+    grdPallets->addWidget(this->btnAddPallets, 1, 0, 1, 1);
+    grdPallets->addWidget(this->btnRemPallets, 1, 1, 1, 1);
+    grdPallets->addWidget(spcPallets, 1, 2, 1, 1);
 
     auto *grid = new QGridLayout(wgtMain);
-    grid->addLayout(vbxPallets, 0, 0, 1, 1);
-    grid->addLayout(grdFiles, 0, 1, 1, 1);
+    grid->addLayout(hbxRun, 0, 0, 1, 2);
+    grid->addLayout(grdPallets, 1, 0, 1, 1);
+    grid->addWidget(this->tabFiles, 1, 1, 2, 1);
 
     this->setCentralWidget(wgtMain);
     wgtMain->setLayout(grid);
@@ -165,13 +180,13 @@ void BatchRenamer::setupData() {
 }
 
 void BatchRenamer::connectAll() {
-    QObject::connect(this->aomPallets->btnAdd, &QPushButton::clicked, this, &BatchRenamer::addPallet);
-    QObject::connect(this->aomPallets->btnRem, &QPushButton::clicked, this, &BatchRenamer::remPallets);
+    QObject::connect(this->btnAddPallets, &QPushButton::clicked, this, &BatchRenamer::addPallet);
+    QObject::connect(this->btnRemPallets, &QPushButton::clicked, this, &BatchRenamer::remPallets);
 
-    QObject::connect(this->aomFiles->btnAdd, &QPushButton::clicked, this, &BatchRenamer::addFiles);
-    QObject::connect(this->aomFiles->btnRem, &QPushButton::clicked, this, &BatchRenamer::removeSelectedFiles);
+    QObject::connect(this->btnAddFiles, &QPushButton::clicked, this, &BatchRenamer::addFiles);
+    QObject::connect(this->btnRemFiles, &QPushButton::clicked, this, &BatchRenamer::removeSelectedFiles);
 
-    QObject::connect(this->toolbar->btnRun, &QPushButton::clicked, this, &BatchRenamer::applyChanges);
+    QObject::connect(this->btnRun, &QPushButton::clicked, this, &BatchRenamer::applyChanges);
 }
 
 void BatchRenamer::addPallet() {
