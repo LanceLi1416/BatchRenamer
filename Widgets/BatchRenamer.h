@@ -6,11 +6,10 @@
 #include <QFileInfo>
 #include <QListWidget>
 #include <QMainWindow>
+#include <QPushButton>
 #include <QTableWidget>
 
-#include "AddOrRemove.h"
 #include "Pallet.hpp"
-#include "brToolBar.h"
 
 #include "../enums.h"
 

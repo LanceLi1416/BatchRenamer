@@ -28,8 +28,6 @@ add_executable(BatchRenamer
         Core/number.h
         Core/set_extension.cpp
         Core/set_extension.h
-        Widgets/AddOrRemove.cpp
-        Widgets/AddOrRemove.h
         Widgets/BatchRenamer.cpp
         Widgets/BatchRenamer.h
         Widgets/brFindAndReplace.cpp
@@ -40,8 +38,6 @@ add_executable(BatchRenamer
         Widgets/brRemoveText.h
         Widgets/brSetExtension.cpp
         Widgets/brSetExtension.h
-        Widgets/brToolBar.cpp
-        Widgets/brToolBar.h
         Widgets/Pallet.hpp
         Widgets/Spacer.cpp
         Widgets/Spacer.h)

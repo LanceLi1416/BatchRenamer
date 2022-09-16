@@ -6,10 +6,10 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QWidget>
 
 #include <algorithm>
 
-#include "AddOrRemove.h"
 #include "brFindAndReplace.h"
 #include "brNumber.h"
 #include "brRemoveText.h"
@@ -32,7 +32,7 @@ BatchRenamer::~BatchRenamer() {
 }
 
 void BatchRenamer::setupUi() {
-    this->setWindowTitle("Batch Renamer");
+    this->setWindowTitle(tr("Batch Renamer"));
     this->resize(1280, 720);
 
     auto *wgtMain = new QWidget(this);
@@ -90,17 +90,17 @@ void BatchRenamer::setupMenu() {
     auto *menuBar = new QMenuBar(this);
 
     // FILE ------------------------------------------------------------------------------------------------------------
-    auto *mnuFile = new QMenu("File", this);
+    auto *mnuFile = new QMenu(tr("File"), this);
 
-    auto *actApplyChanges = new QAction("Apply Changes", this);
-    auto *actAddFiles = new QAction("Add Files...", this);
-    auto *actRemSelected = new QAction("Remove Selected Files", this);
-    auto *actRemAll = new QAction("Remove All Files", this);
-    auto *actRemUnaffected = new QAction("Remove Unaffected Files", this);
-    auto *actNewPallet = new QAction("New Pallet", this);
-    auto *actRemSelectedPallets = new QAction("Remove Selected Pallets", this);
-    auto *actRemAllPallets = new QAction("Remove All Pallets", this);
-    auto *actCloseWindow = new QAction("Close Window", this);
+    auto *actApplyChanges = new QAction(tr("Apply Changes"), this);
+    auto *actAddFiles = new QAction(tr("Add Files..."), this);
+    auto *actRemSelected = new QAction(tr("Remove Selected Files"), this);
+    auto *actRemAll = new QAction(tr("Remove All Files"), this);
+    auto *actRemUnaffected = new QAction(tr("Remove Unaffected Files"), this);
+    auto *actNewPallet = new QAction(tr("New Pallet"), this);
+    auto *actRemSelectedPallets = new QAction(tr("Remove Selected Pallets"), this);
+    auto *actRemAllPallets = new QAction(tr("Remove All Pallets"), this);
+    auto *actCloseWindow = new QAction(tr("Close Window"), this);
 
     mnuFile->addAction(actApplyChanges);
     mnuFile->addAction(actAddFiles);
@@ -135,16 +135,16 @@ void BatchRenamer::setupMenu() {
     QObject::connect(actCloseWindow, &QAction::triggered, this, &QMainWindow::close);
 
     // EDIT ------------------------------------------------------------------------------------------------------------
-    auto *mnuEdit = new QMenu("Edit", this);
+    auto *mnuEdit = new QMenu(tr("Edit"), this);
 
     // VIEW ------------------------------------------------------------------------------------------------------------
-    auto *mnuView = new QMenu("View", this);
+    auto *mnuView = new QMenu(tr("View"), this);
 
     // WINDOW ----------------------------------------------------------------------------------------------------------
-    auto *mnuWind = new QMenu("Window", this);
+    auto *mnuWind = new QMenu(tr("Window"), this);
 
-    auto *actMinimize = new QAction("Minimize", this);
-    auto *actZoom = new QAction("Zoom", this);
+    auto *actMinimize = new QAction(tr("Minimize"), this);
+    auto *actZoom = new QAction(tr("Zoom"), this);
 
     mnuWind->addAction(actMinimize);
     mnuWind->addAction(actZoom);
