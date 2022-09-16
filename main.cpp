@@ -6,15 +6,14 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
+    // Translation
     QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    qDebug() << QLocale();
-    for (const QString &locale: uiLanguages) {
-        const QString baseName = "br_" + QLocale(locale).name();
-        qDebug() << baseName;
-        if (translator.load(":/i18n/i18n/" + baseName)) {
-            QApplication::installTranslator(&translator);
-            break;
+    if (QLocale().language() != QLocale::English) {
+        for (const QString &locale: QLocale::system().uiLanguages()) {
+            if (translator.load(":/i18n/i18n/br_" + QLocale(locale).name())) {
+                QApplication::installTranslator(&translator);
+                break;
+            }
         }
     }
 
