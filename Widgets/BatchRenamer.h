@@ -53,11 +53,13 @@ private:
     void changePalletType(QListWidgetItem *item, gui::TYPE type = gui::TYPE::FIND_AND_REPL);
 
 private:
-    brToolBar *toolbar{};
     QListWidget *lstPallets{};
     QTableWidget *tabFiles{};
-    AddOrRemove *aomPallets{};
-    AddOrRemove *aomFiles{};
+    QPushButton *btnRun{};
+    QPushButton *btnAddPallets{};
+    QPushButton *btnRemPallets{};
+    QPushButton *btnAddFiles{};
+    QPushButton *btnRemFiles{};
 
     QMap<QListWidgetItem *, Pallet *> *mapPallets{};
     QList<QFileInfo> *lstOrigNames{};

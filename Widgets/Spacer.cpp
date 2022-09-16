@@ -3,5 +3,5 @@
 #include <QSizePolicy>
 
 Spacer::Spacer(QWidget *parent) : QWidget(parent) {
-    this->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+    this->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
 }
